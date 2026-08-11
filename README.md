@@ -11,7 +11,6 @@ Aplikasi Next.js/TypeScript untuk menjalankan flow pendaftaran HYFE eSIM Trial m
 - Kontrol eksplisit sebelum mencatat consent, meminta OTP, dan melakukan submit akhir satu kali.
 - CAPTCHA manual: aplikasi tidak membuat, memecahkan, mengambil, atau melewati CAPTCHA. Anda sendiri yang menyelesaikan CAPTCHA dari layanan resmi dan memasukkan respons yang sah.
 - Submit akhir tidak memiliki retry otomatis. Bila time out, periksa status melalui layanan resmi sebelum memulai sesi baru.
-- Skrip referensi Python `hyfe_esim_flow.py` dan `hyfe_esim_flow_v4_browser.py` tetap dipertahankan tanpa perubahan.
 
 ## Menjalankan secara lokal
 
