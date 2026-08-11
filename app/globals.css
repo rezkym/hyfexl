@@ -1,0 +1,13 @@
+:root {
+  color-scheme: light;
+  font-family: Arial, Helvetica, sans-serif;
+  background: #f4f7fb;
+  color: #12213c;
+}
+
+* { box-sizing: border-box; }
+body { margin: 0; }
+button, input, textarea { font: inherit; }
+.page-shell { min-height: 100vh; display: grid; place-items: center; padding: 24px; }
+.loading-card { width: min(100%, 640px); border-radius: 24px; background: #fff; padding: 40px; box-shadow: 0 20px 60px #12213c1a; }
+.eyebrow { color: #2858d8; font-weight: 700; letter-spacing: .08em; text-transform: uppercase; }
