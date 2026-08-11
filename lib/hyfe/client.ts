@@ -1,6 +1,6 @@
 import { FlowHttpError } from '@/lib/http';
 import type { FlowState } from '@/lib/flow-state';
-import { firstValue, findNumberCandidates, safeExcerpt } from './response';
+import { firstValue, findNumberCandidates } from './response';
 import { DEFAULT_CHANNEL_ID, getHyfeConfig } from './config';
 import type { NumberCandidate } from './types';
 
@@ -251,7 +251,11 @@ export class HyfeClient {
     const rawBody = await response.text();
     const allowedStatuses = new Set(options.allowedStatuses ?? []);
     if (!response.ok && !allowedStatuses.has(response.status)) {
-      throw new FlowHttpError('upstream', `Layanan merespons HTTP ${response.status}. ${safeExcerpt(rawBody)}`, 502);
+      throw new FlowHttpError(
+        'upstream',
+        `Layanan resmi mengembalikan kesalahan HTTP ${response.status}. Coba lagi dari awal.`,
+        502,
+      );
     }
     if (options.expectJson === false) {
       return { response, data: undefined };
@@ -262,7 +266,7 @@ export class HyfeClient {
       const contentType = response.headers.get('content-type') || 'tidak diketahui';
       throw new FlowHttpError(
         'upstream',
-        `Respons dari layanan bukan JSON (Content-Type: ${contentType}). ${safeExcerpt(rawBody)}`,
+        `Respons dari layanan bukan JSON (Content-Type: ${contentType}).`,
       );
     }
   }

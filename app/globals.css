@@ -1,13 +1,227 @@
 :root {
   color-scheme: light;
   font-family: Arial, Helvetica, sans-serif;
-  background: #f4f7fb;
-  color: #12213c;
+  background: #edf3ff;
+  color: #10203b;
 }
 
 * { box-sizing: border-box; }
-body { margin: 0; }
+
+body { margin: 0; min-width: 320px; }
+
 button, input, textarea { font: inherit; }
-.page-shell { min-height: 100vh; display: grid; place-items: center; padding: 24px; }
-.loading-card { width: min(100%, 640px); border-radius: 24px; background: #fff; padding: 40px; box-shadow: 0 20px 60px #12213c1a; }
-.eyebrow { color: #2858d8; font-weight: 700; letter-spacing: .08em; text-transform: uppercase; }
+
+button { cursor: pointer; }
+
+button:disabled { cursor: not-allowed; opacity: .58; }
+
+.app-shell {
+  min-height: 100vh;
+  padding: 32px 16px;
+  background:
+    radial-gradient(circle at top left, #c7d8ff 0, transparent 34%),
+    radial-gradient(circle at bottom right, #c6f0e4 0, transparent 34%),
+    #edf3ff;
+}
+
+.app-card {
+  width: min(100%, 780px);
+  margin: 0 auto;
+  overflow: hidden;
+  border: 1px solid #d9e3f5;
+  border-radius: 28px;
+  background: #fff;
+  box-shadow: 0 24px 70px #1839691c;
+}
+
+.app-header {
+  display: flex;
+  align-items: center;
+  gap: 16px;
+  padding: 30px 32px 24px;
+  border-bottom: 1px solid #e5ecf7;
+}
+
+.brand-mark {
+  display: grid;
+  width: 50px;
+  height: 50px;
+  flex: 0 0 auto;
+  place-items: center;
+  border-radius: 16px;
+  color: #fff;
+  background: linear-gradient(135deg, #2456e5, #122f98);
+  font-size: 24px;
+  font-weight: 800;
+  box-shadow: 0 10px 24px #2456e555;
+}
+
+.eyebrow, .section-kicker {
+  margin: 0 0 6px;
+  color: #2858d8;
+  font-size: 12px;
+  font-weight: 800;
+  letter-spacing: .1em;
+  text-transform: uppercase;
+}
+
+h1, h2, p { margin-top: 0; }
+
+h1 { margin-bottom: 5px; font-size: clamp(26px, 5vw, 34px); line-height: 1.12; }
+
+h2 { margin-bottom: 10px; font-size: clamp(22px, 4vw, 27px); line-height: 1.2; }
+
+.subtitle, .flow-section > p { color: #52637e; line-height: 1.6; }
+
+.subtitle { margin-bottom: 0; }
+
+.step-indicator {
+  display: grid;
+  grid-template-columns: repeat(6, 1fr);
+  gap: 4px;
+  margin: 0;
+  padding: 18px 32px;
+  border-bottom: 1px solid #e5ecf7;
+  list-style: none;
+}
+
+.step { display: grid; gap: 5px; justify-items: center; color: #7d8aa0; font-size: 11px; text-align: center; }
+
+.step span {
+  display: grid;
+  width: 26px;
+  height: 26px;
+  place-items: center;
+  border: 1px solid #c9d5e8;
+  border-radius: 50%;
+  background: #fff;
+  font-size: 12px;
+  font-weight: 700;
+}
+
+.step-complete, .step-current { color: #193eae; }
+
+.step-complete span { border-color: #4e74e7; color: #fff; background: #4e74e7; }
+
+.step-current span { border: 5px solid #d8e2ff; color: #fff; background: #2456e5; }
+
+.flow-section { padding: 32px; }
+
+.form-grid { display: grid; gap: 18px; }
+
+.field-group { display: grid; gap: 7px; }
+
+.field-group label { color: #263957; font-weight: 700; }
+
+.field-group input, .field-group textarea {
+  width: 100%;
+  border: 1px solid #bac8dd;
+  border-radius: 11px;
+  padding: 12px 13px;
+  outline: none;
+  color: #10203b;
+  background: #fff;
+  transition: border-color .15s, box-shadow .15s;
+}
+
+.field-group textarea { min-height: 108px; resize: vertical; }
+
+.field-group input:focus, .field-group textarea:focus { border-color: #2456e5; box-shadow: 0 0 0 4px #2456e51a; }
+
+.field-hint, .field-error { margin: 0; font-size: 13px; line-height: 1.4; }
+
+.field-hint { color: #667895; }
+
+.field-error { color: #b1253f; }
+
+.button {
+  min-height: 45px;
+  border: 0;
+  border-radius: 11px;
+  padding: 10px 18px;
+  font-weight: 800;
+  transition: transform .15s, box-shadow .15s, background .15s;
+}
+
+.button:not(:disabled):hover { transform: translateY(-1px); }
+
+.button-primary { color: #fff; background: #2456e5; box-shadow: 0 8px 18px #2456e533; }
+
+.button-primary:not(:disabled):hover { background: #1947c9; }
+
+.button-secondary { color: #173586; background: #e6edff; }
+
+.button-ghost { color: #304767; background: #eef2f8; }
+
+.button-danger { width: 100%; color: #fff; background: #b43b46; box-shadow: 0 8px 18px #b43b4633; }
+
+.notice {
+  margin: 0 32px 0;
+  border-radius: 12px;
+  padding: 13px 14px;
+  font-size: 14px;
+  line-height: 1.5;
+}
+
+.flow-section .notice { margin: 0 0 18px; }
+
+.notice-neutral { color: #304767; background: #edf3fc; }
+
+.notice-warning { color: #694716; background: #fff4d9; }
+
+.notice-error { margin-top: 18px; color: #8c1d34; background: #ffe8ed; }
+
+.checkbox-row {
+  display: flex;
+  align-items: flex-start;
+  gap: 10px;
+  margin: 20px 0;
+  color: #304767;
+  line-height: 1.5;
+}
+
+.checkbox-row input { width: 18px; height: 18px; margin-top: 2px; accent-color: #2456e5; }
+
+.candidate-list { display: grid; gap: 10px; margin: 20px 0; }
+
+.candidate {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  border: 1px solid #cbd6e7;
+  border-radius: 12px;
+  padding: 14px;
+  color: #1d3151;
+  font-weight: 700;
+}
+
+.candidate input { accent-color: #2456e5; }
+
+.candidate-selected { border-color: #2456e5; background: #f0f4ff; }
+
+.action-row { display: flex; flex-wrap: wrap; justify-content: space-between; gap: 12px; margin-top: 24px; }
+
+.final-gate { margin-top: 22px; }
+
+.review-list, .result-details { display: grid; gap: 1px; margin: 18px 0 24px; overflow: hidden; border: 1px solid #d9e3f5; border-radius: 12px; }
+
+.review-list div, .result-details div { display: grid; grid-template-columns: minmax(110px, .8fr) 1.2fr; gap: 16px; padding: 12px 14px; background: #f8faff; }
+
+dt { color: #637493; }
+
+dd { margin: 0; color: #1c3152; font-weight: 700; overflow-wrap: anywhere; }
+
+.official-link { color: #214fcf; font-weight: 700; }
+
+.result-panel { text-align: left; }
+
+@media (max-width: 560px) {
+  .app-shell { padding: 0; }
+  .app-card { min-height: 100vh; border: 0; border-radius: 0; }
+  .app-header, .flow-section { padding: 24px 20px; }
+  .step-indicator { padding: 16px 12px; }
+  .step strong { display: none; }
+  .notice { margin: 12px 20px 0; }
+  .review-list div, .result-details div { grid-template-columns: 1fr; gap: 3px; }
+  .action-row .button { flex: 1; }
+}

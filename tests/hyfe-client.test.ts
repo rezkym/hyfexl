@@ -59,6 +59,15 @@ describe('HyfeClient', () => {
     );
   });
 
+  it('does not expose upstream response bodies in user-facing HTTP errors', async () => {
+    const state = { ...newFlowState(), token: 'token', csrf: 'csrf' };
+    const fetchMock = vi.fn().mockResolvedValue(new Response('{"email":"private@example.com"}', { status: 500 }));
+
+    await expect(
+      new HyfeClient(state, fetchMock as typeof fetch).findNumbers({ prefix: '6281', pattern: '', pageSize: 40 }),
+    ).rejects.toThrow('Layanan resmi mengembalikan kesalahan HTTP 500. Coba lagi dari awal.');
+  });
+
   it('sends final submit only once when the upstream request times out', async () => {
     const state = {
       ...newFlowState(),
